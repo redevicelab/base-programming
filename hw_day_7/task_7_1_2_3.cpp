@@ -1,7 +1,3 @@
-// 1.	Программа, случайным образом, генерирует размер прибыли фирмы за месяц, в диапазоне от 10000 до 20000. Заполнить массив прибыли за 1 год. Вывести информацию о помесячной прибыли на экран.
-// 2.	Дополнение к заданию 1.  Необходимо определить месяц, в котором прибыль была максимальна и месяц, в котором прибыль была минимальна.
-// 3.	Дополнение к заданию 2. Программа позволяет пользователю ввести интересующий его период, статистика с какого по какой месяц его интересует, далее программа выводит информацию за интересующий пользователя период.
-
 #include <iostream>
 #include <ctime>
 
@@ -79,7 +75,8 @@ void printRangeMonthProfit(int array[], int startMouth = 1, int endMouth=12) {
 }
 
 int findMaximumProfitMonth(int array[]) {
-	int maximumProfit = 0;
+	const int ARR_BEGIN = 0;
+	int maximumProfit = array[ARR_BEGIN];
 	for (int i = 0; i < MONTHS_YEAR; i++) {
 		if (maximumProfit < array[i]) {
 			maximumProfit = array[i];
@@ -89,8 +86,8 @@ int findMaximumProfitMonth(int array[]) {
 }
 
 int findMinimumProfitMonth(int array[]) {
-	int minimumProfit;
-	minimumProfit = findMaximumProfitMonth(array);
+	const int ARR_BEGIN = 0;
+	int minimumProfit = array[ARR_BEGIN];
 	for (int i = 0; i < MONTHS_YEAR; i++) {
 		if (minimumProfit > array[i]) {
 			minimumProfit = array[i];
