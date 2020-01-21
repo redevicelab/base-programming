@@ -50,6 +50,6 @@ int main() {
 	cout << endl;
 	swapArr(arr);
 	cout << "Вывод массива с измененым\nпорядком следования элементов:\t";
-	printArr(&arr[0]);
+	printArr(arr);
 	return 0;
 }
