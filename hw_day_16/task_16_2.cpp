@@ -1,9 +1,3 @@
-// Даны два массива: А[M] и B[N] (m и n, т.е. размерности массива генерируются случайно,
-// в диапазоне от 10 до 30). Оба массива заполняются случайными, целыми числами в 
-// диапазоне от 15 до 30. Необходимо создать третий массив минимально необходимого 
-// размера, в котором нужно собрать, без повторений, все элементы массива A, которые 
-// не включаются в массив B.
-
 #include <iostream>
 #include <ctime>
 
@@ -60,30 +54,38 @@ void fillArr(int* arr, int arrSize) {
 	}
 }
 
-void fillArr(int* arrA, int* arrB, int*& arrC, int sizeA, int sizeB, int& sizeC) {
+void fillArr(int* arrA, int* arrB, int*& arrC, int sizeA, int sizeB, int& sizeC)
+{
 
 	for (int i = 0; i < sizeA; i++)
 	{
-		int flag = 0;
+		bool firstRepeat = false;
+		bool secondRepeat = false;
 		for (int j = 0; j < sizeB; j++)
 		{
-			if (arrA[i] != arrB[j]) { // тут разница
-				for (int k = 0; k < sizeC; k++)
+			if (arrA[i] == arrB[j])
+			{
+				firstRepeat = true;
+			}
+			for (int k = 0; k < sizeC; k++)
+			{
+				if (arrA[i] == arrC[k])
 				{
-					if (arrA[i] == arrC[k]) {
-						flag = 1;
-					}
+					secondRepeat = true;
 				}
-				if (flag == 0) {
-					pushBack(arrC, sizeC, arrA[i]);
-				}
+
 			}
 
 		}
-
+		if (!firstRepeat && !secondRepeat)
+		{
+			pushBack(arrC, sizeC, arrA[i]);
+		}
 	}
-
 }
+
+
+
 
 void printArr(int* arr, int arrSize) {
 	cout << "\nArray: ";
@@ -96,6 +98,14 @@ void printArr(int* arr, int arrSize) {
 
 int main() {
 	srand(time(NULL));
+	setlocale(LC_ALL, "ru");
+	cout << "Приветную тебя дорогой пользователь. Это программа, делает вот что:\n"
+		"Случайным образом создает динамический массивы и также случайным образом заполняет массивы в количестве 2 шт.\n"
+		"Потом это необыкновенная программа создает третий динамический массив и тоже его заполняет,\n"
+		"но только вот каким хитрым способом.Программа сравнивает есть ли не одинаковые числа в первом массиве \n"
+		"в сравнеии со вторым массивом,и если есть оно то это число добавляется в третий массив, но без повторений.\n"
+		"И так вот он РЕЗУЛЬТАТ :\n";
+
 	int M = getRand(START_RANGE_ARR, FINISH_RANGE_ARR);
 	int N = getRand(START_RANGE_ARR, FINISH_RANGE_ARR);
 	int K = 0;
